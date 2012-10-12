@@ -12,10 +12,25 @@ if has("gui_running")
   " (the numbers don't show up) so I made it a VimEnter event
   autocmd VimEnter * set guitablabel=%N:\ %t\ %M
 
-  set lines=60
-  set columns=190
+  set lines=55
+  set columns=106
 
-  set guifont=Inconsolata:h20,Monaco:h17
+  set guifont=Source\ Code\ Pro:h20,Inconsolata:h20,Monaco:h17
+  set go-=T
+  set go-=l
+  set go-=L
+  set go-=r
+  set go-=R
+
+  highlight SpellBad term=underline gui=undercurl guisp=Orange
+  highlight ColorColumn guibg=#232728
+
+  " Use a line-drawing char for pretty vertical splits.
+  set fillchars+=vert:│
+
+  " Different cursors for different modes.
+  set guicursor=n-c:block-Cursor-blinkon0
+  set guicursor+=v:block-vCursor-blinkon0
 else
   "dont load csapprox if we no gui support - silences an annoying warning
   let g:CSApprox_loaded = 1

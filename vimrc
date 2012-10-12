@@ -19,6 +19,9 @@ endif
 " ================ General Config ====================
 
 set number                      "Line numbers are good
+set relativenumber              "Line numbers relative to cursor
+set encoding=utf-8
+set laststatus=2
 set backspace=indent,eol,start  "Allow backspace in insert mode
 set history=1000                "Store lots of :cmdline history
 set showcmd                     "Show incomplete cmds down the bottom
@@ -40,6 +43,10 @@ syntax on
 set incsearch        "Find the next match as we type the search
 set hlsearch         "Hilight searches by default
 set viminfo='100,f1  "Save up to 100 marks, enable capital marks
+set ignorecase
+set smartcase
+set gdefault
+set showmatch
 
 " ================ Turn Off Swap Files ==============
 
@@ -73,6 +80,10 @@ set list listchars=tab:\ \ ,trail:·
 
 set nowrap       "Don't wrap lines
 set linebreak    "Wrap lines at convenient points
+set matchpairs+=<:>               "Allow % to bounce between angles too
+set textwidth=80
+set formatoptions=qrn1
+set colorcolumn=+1
 
 " ================ Folds ============================
 
@@ -84,21 +95,33 @@ set nofoldenable        "dont fold by default
 
 set wildmode=list:longest
 set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
+set wildignore=*.o,*.obj,*~,*.exe,*.dll,*.manifest "stuff to ignore when tab completing
 set wildignore+=*vim/backups*
 set wildignore+=*sass-cache*
+set wildignore+=.hg,.git,.svn                    " Version control
+set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=*.spl                            " compiled spelling word lists
+set wildignore+=*.sw?                            " Vim swap files
 set wildignore+=*DS_Store*
 set wildignore+=vendor/rails/**
 set wildignore+=vendor/cache/**
 set wildignore+=*.gem
 set wildignore+=log/**
 set wildignore+=tmp/**
-set wildignore+=*.png,*.jpg,*.gif
 
 "
 
 " ================ Scrolling ========================
 
-set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set scrolloff=3         "Start scrolling when we're 3 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
+
+augroup ft_vim
+    au!
+
+    au FileType vim setlocal foldmethod=marker
+    au FileType help setlocal textwidth=78
+    au BufWinEnter *.txt if &ft == 'help' | wincmd L | endif
+augroup END

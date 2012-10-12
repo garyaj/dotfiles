@@ -12,14 +12,12 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #   Yan Pritzker <yan@pritzker.ws>
 
-function rvm_info_for_prompt {
-  if [[ -d ~/.rvm/ ]]; then
-    ruby_version=$(~/.rvm/bin/rvm-prompt)
-    if [ -n "$ruby_version" ]; then
-      echo "[$ruby_version]"
-    fi
-  fi
-}
+# function rvm_info_for_prompt {
+#   ruby_version=$(~/.rvm/bin/rvm-prompt)
+#   if [ -n "$ruby_version" ]; then
+#     echo "[$ruby_version]"
+#   fi
+# }
 
 function prompt_skwp_precmd {
   # Check for untracked files or updated submodules since vcs_info doesn't.
@@ -88,7 +86,8 @@ function prompt_skwp_setup {
   zstyle ':vcs_info:*:prompt:*' nvcsformats   ""
 
   PROMPT="${__PROMPT_SKWP_COLORS[3]}%n%f@${__PROMPT_SKWP_COLORS[2]}%m%f ${__PROMPT_SKWP_COLORS[5]}%~%f "'${vcs_info_msg_0_}'"$ "
-  RPROMPT="%F{blue}"'$(rvm_info_for_prompt)'""
+  # RPROMPT="%F{blue}"'$(rvm_info_for_prompt)'""
+  RPROMPT="%F{blue}"
 }
 
 prompt_skwp_setup "$@"

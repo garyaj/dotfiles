@@ -109,3 +109,8 @@
   # Remember my merges
   # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
   enabled = true
+[user]
+	name = Gary Ashton-Jones
+	email = gary@ashton-jones.com.au
+[credential]
+	helper = osxkeychain

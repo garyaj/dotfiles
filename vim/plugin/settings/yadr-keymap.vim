@@ -170,10 +170,10 @@ nnoremap <D-Left> <C-w><
 nnoremap <D-Right>  <C-w>>
 
 " create <%= foo %> erb tags using Ctrl-k in edit mode
-imap <silent> <C-K> <%=   %><Esc>3hi
+" imap <silent> <C-K> <%=   %><Esc>3hi
 
 " create <%= foo %> erb tags using Ctrl-j in edit mode
-imap <silent> <C-J> <%  %><Esc>2hi
+" imap <silent> <C-J> <%  %><Esc>2hi
 
 " ============================
 " Shortcuts for everyday tasks
@@ -236,7 +236,40 @@ map ,hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 
 " Source current file Cmd-% (good for vim development)
 map <D-%> :so %<CR>
+nnoremap <leader>. <C-^>
+nnoremap / /\v
+vnoremap / /\v
 
+" It's 2011.
+nnoremap j gj
+nnoremap k gk
+
+nnoremap <leader>ev <C-w>s<C-w>j<C-w>L:e $MYVIMRC<cr>
+
+" Easier linewise reselection
+map <leader>v V`]
+
+" Faster Esc
+inoremap <Esc> <nop>
+Arpeggio inoremap jk  <Esc>
+
+" Easy filetype switching
+nnoremap <leader>T :set ft=tt2<CR>
+nnoremap <leader>H :set ft=html<CR>
+nnoremap <leader>J :set ft=javascript<CR>
+nnoremap <leader>r :set ft=perl.rdor<CR>
+
+" map <leader>p :Hammer<CR>
+
+" Shouldn't need shift
+nnoremap ; :
+
+" Resize splits when the window is resized
+au VimResized * exe "normal! \<c-w>="
+
+" Reuse useless help key.
+noremap  <F1> :set invfullscreen<CR>
+inoremap <F1> <ESC>:set invfullscreen<CR>a
 
 " ,hp = html preview
 map <silent> ,hp :!open -a Safari %<CR><CR>
