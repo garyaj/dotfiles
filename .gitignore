@@ -1,6 +1,6 @@
 custom/zsh
 
-ctags/*
+ctags/
 vim/backups
 vim/view
 *un~
